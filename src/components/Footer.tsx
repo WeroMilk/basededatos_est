@@ -19,11 +19,11 @@ export default function Footer() {
         <img
           src={`${import.meta.env.BASE_URL}logo-sonora.png`}
           alt="Sonora, Tierra de oportunidades"
-          className="w-auto max-w-[200px] sm:max-w-[240px] h-auto max-h-14 object-contain mb-3 mx-auto"
+          className="w-auto max-w-[260px] sm:max-w-[300px] h-auto max-h-16 sm:max-h-[4.75rem] object-contain mb-3 mx-auto"
           decoding="async"
         />
         <h3 className="text-white font-semibold text-lg mb-1">
-          Secretaría de Educación y Cultura
+          Secretaría de Educación y Cultura | Secundarias Técnicas
         </h3>
         <p className="text-white/70 text-sm mb-1">
           Gobierno del Estado de Sonora
