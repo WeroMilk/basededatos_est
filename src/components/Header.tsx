@@ -11,9 +11,9 @@ export default function Header() {
     >
       <div className="flex items-center gap-3 md:gap-4 w-full max-w-6xl mx-auto">
         <img
-          src={`${import.meta.env.BASE_URL}logo-sonora.png`}
-          alt="Sonora, Tierra de oportunidades"
-          className="h-12 sm:h-14 md:h-16 w-auto max-w-[min(85vw,280px)] sm:max-w-[min(90vw,340px)] md:max-w-[380px] object-contain object-left shrink-0"
+          src={`${import.meta.env.BASE_URL}logo-dgest-est.png`}
+          alt="DGEST — Escuela Secundaria Técnica"
+          className="h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 object-contain object-left"
           decoding="async"
         />
         <div className="flex flex-col min-w-0 flex-1 pr-1">
@@ -25,15 +25,23 @@ export default function Header() {
           </span>
         </div>
         
-        <div className="ml-auto hidden md:flex items-center gap-2">
-          <div 
-            className="w-8 h-8 rounded-full flex items-center justify-center"
+        <a
+          href="https://educacion.sonora.gob.mx/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-auto flex items-center gap-2 shrink-0 rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 transition-opacity hover:opacity-90 active:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/70"
+          aria-label="Ir al sitio oficial de la Secretaría de Educación y Cultura, Gobierno de Sonora"
+        >
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
             style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}
           >
-            <Building2 className="w-4 h-4 text-white" />
+            <Building2 className="w-4 h-4 text-white" aria-hidden />
           </div>
-          <span className="text-white/90 text-sm font-medium">SEC Sonora</span>
-        </div>
+          <span className="text-white font-semibold text-xs sm:text-sm leading-tight">
+            SEC Sonora
+          </span>
+        </a>
       </div>
     </header>
   );
