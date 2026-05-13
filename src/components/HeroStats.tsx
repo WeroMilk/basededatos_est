@@ -8,7 +8,7 @@ interface HeroStatsProps {
   stats: SchoolStats;
   /** Plantel por turno (matutino / vespertino como filas separadas). */
   totalTurnos: number;
-  /** Suma de (mayor grupo + 5) por cada turno — total exámenes a imprimir. */
+  /** Suma de (mayor grupo + 5) por cada turno — total de baterías a imprimir. */
   totalBateriasExamenes: number;
   searchQuery: string;
   onSearchChange: (query: string) => void;
@@ -82,10 +82,10 @@ export default function HeroStats({
           <AnimatedStat value={stats.totalSchools} label="Plantel físico" delay={0.1} />
           <AnimatedStat value={stats.totalGroups} label="Total grupos" delay={0.15} />
           <AnimatedStat value={stats.totalStudents} label="Total alumnos" delay={0.2} />
-          <AnimatedStat value={totalBateriasExamenes} label="Total exámenes" delay={0.25} />
+          <AnimatedStat value={totalBateriasExamenes} label="Total baterías" delay={0.25} />
         </div>
         <p className="text-center text-white/65 text-[11px] md:text-xs px-4 mb-8 max-w-xl mx-auto leading-relaxed">
-          Suma de las baterías recomendadas: por cada turno, grupo más grande + 5 exámenes a imprimir.
+          Total de baterías: suma por turno del grupo más grande + 5 unidades para impresión.
         </p>
 
         {/* Search Bar */}

@@ -28,6 +28,9 @@ export default function Footer() {
         <p className="text-white/70 text-sm mb-1">
           Gobierno del Estado de Sonora
         </p>
+        <p className="text-white/65 text-xs mb-3 mt-2">
+          Base de datos desarrollada por Luis Alfonso Silvas
+        </p>
         <p className="text-white/50 text-xs">
           &copy; {new Date().getFullYear()} - Todos los derechos reservados
         </p>
