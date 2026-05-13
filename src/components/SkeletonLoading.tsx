@@ -34,8 +34,8 @@ export function SkeletonHero() {
           <div className="h-16 rounded-xl animate-shimmer w-32 mx-auto mb-2" style={{ background: 'rgba(255,255,255,0.1)' }} />
           <div className="h-4 rounded-md animate-shimmer w-48 mx-auto" style={{ background: 'rgba(255,255,255,0.08)' }} />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
-          {[1, 2, 3, 4].map((i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
+          {[1, 2, 3].map((i) => (
             <div key={i} className="flex flex-col items-center">
               <div className="h-7 rounded-lg animate-shimmer w-16 mb-1" style={{ background: 'rgba(255,255,255,0.1)' }} />
               <div className="h-3 rounded-md animate-shimmer w-24" style={{ background: 'rgba(255,255,255,0.06)' }} />

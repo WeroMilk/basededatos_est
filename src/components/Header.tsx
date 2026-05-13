@@ -10,10 +10,11 @@ export default function Header() {
       }}
     >
       <div className="flex items-center gap-3 w-full max-w-6xl mx-auto">
-        <img 
-          src="/logo-sec.png" 
-          alt="SEC Sonora" 
-          className="h-10 w-auto object-contain bg-white/10 rounded-md p-1"
+        <img
+          src={`${import.meta.env.BASE_URL}logo-sonora.png`}
+          alt="Sonora, Tierra de oportunidades"
+          className="h-9 sm:h-10 w-auto max-w-[200px] sm:max-w-[260px] object-contain object-left shrink-0"
+          decoding="async"
         />
         <div className="flex flex-col">
           <h1 className="text-white font-semibold text-base md:text-lg leading-tight">

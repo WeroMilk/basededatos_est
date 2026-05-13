@@ -62,11 +62,10 @@ export default function HeroStats({ stats, searchQuery, onSearchChange }: HeroSt
         </motion.div>
 
         {/* Secondary Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
           <AnimatedStat value={stats.publicSchools} label="Escuelas Públicas" delay={0.1} />
-          <AnimatedStat value={stats.privateSchools} label="Escuelas Privadas" delay={0.2} />
-          <AnimatedStat value={stats.totalGroups} label="Total Grupos" delay={0.3} />
-          <AnimatedStat value={stats.totalStudents} label="Total Alumnos" delay={0.4} />
+          <AnimatedStat value={stats.totalGroups} label="Total Grupos" delay={0.2} />
+          <AnimatedStat value={stats.totalStudents} label="Total Alumnos" delay={0.3} />
         </div>
 
         {/* Search Bar */}

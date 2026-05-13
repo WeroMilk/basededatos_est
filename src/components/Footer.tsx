@@ -16,10 +16,11 @@ export default function Footer() {
         viewport={{ once: true }}
         transition={{ type: 'spring', stiffness: 100, damping: 15 }}
       >
-        <img 
-          src="/logo-sec.png" 
-          alt="SEC Sonora" 
-          className="h-14 w-auto object-contain mb-4 bg-white/10 rounded-lg p-1.5"
+        <img
+          src={`${import.meta.env.BASE_URL}logo-sonora.png`}
+          alt="Sonora, Tierra de oportunidades"
+          className="w-full max-w-xl h-auto object-contain mb-4 mx-auto"
+          decoding="async"
         />
         <h3 className="text-white font-semibold text-lg mb-1">
           Secretaría de Educación y Cultura
