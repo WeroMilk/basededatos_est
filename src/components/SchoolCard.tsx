@@ -26,12 +26,12 @@ function GroupCard({ group, isLargest }: { group: Group; isLargest: boolean }) {
         borderLeft: isLargest ? '4px solid var(--sec-accent-gold)' : undefined,
       }}
     >
-      <div className="flex items-center justify-between mb-2">
-        <span className="font-mono text-lg font-semibold" style={{ color: 'var(--sec-text)' }}>
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <span className="font-mono text-lg font-semibold break-all" style={{ color: 'var(--sec-text)' }}>
           {group.code}
         </span>
         <span 
-          className="text-xs font-medium px-2 py-1 rounded-md"
+          className="text-xs font-medium px-2 py-1 rounded-md shrink-0"
           style={{
             background: group.shift === 'M' 
               ? 'rgba(74, 127, 181, 0.15)' 
@@ -77,13 +77,22 @@ export default function SchoolCard({ school, index }: SchoolCardProps) {
       {/* Main Card */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left p-4 md:p-5 flex items-start gap-4 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
+        className="relative w-full text-left pl-4 pr-12 pt-4 pb-4 md:p-5 md:pr-14 flex items-start gap-3 md:gap-4 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer"
         style={{
           boxShadow: isExpanded ? 'none' : undefined,
         }}
         aria-expanded={isExpanded}
         aria-controls={`school-groups-${school.id}`}
       >
+        {/* Chevron fijo: no compite en flex con el título */}
+        <motion.div
+          className="absolute right-3 top-4 md:right-4 md:top-5 z-10 pointer-events-none"
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDown className="w-5 h-5" style={{ color: 'var(--sec-text-muted)' }} aria-hidden />
+        </motion.div>
+
         {/* School Icon */}
         <div 
           className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
@@ -92,75 +101,64 @@ export default function SchoolCard({ school, index }: SchoolCardProps) {
           <Building2 className="w-5 h-5" style={{ color: 'var(--sec-accent-gold)' }} />
         </div>
 
-        {/* School Info */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-base leading-tight mb-1" style={{ color: 'var(--sec-text)' }}>
-                {school.name}
-              </h3>
-              <div className="flex items-center gap-2 mb-1">
-                <span 
-                  className="font-mono text-xs px-2 py-0.5 rounded"
-                  style={{ 
-                    background: 'var(--sec-surface-alt)',
-                    color: 'var(--sec-text-muted)',
-                  }}
-                >
-                  {school.cct}
-                </span>
-                <span 
-                  className="text-xs px-2 py-0.5 rounded-full font-medium"
-                  style={{
-                    background: school.type === 'publica' 
-                      ? 'rgba(46, 125, 90, 0.12)' 
-                      : 'rgba(123, 31, 75, 0.12)',
-                    color: school.type === 'publica' 
-                      ? 'var(--sec-success, #2E7D5A)' 
-                      : 'var(--sec-primary)',
-                  }}
-                >
-                  {school.type === 'publica' ? 'Pública' : 'Privada'}
-                </span>
-              </div>
-              <div className="flex items-center gap-1" style={{ color: 'var(--sec-text-muted)' }}>
-                <MapPin className="w-3 h-3 flex-shrink-0" />
-                <span className="text-xs truncate">{school.address}</span>
-              </div>
-            </div>
-
-            {/* Largest Group Badge + Chevron */}
-            <div className="flex flex-col items-end gap-2 flex-shrink-0">
-              <div className="flex flex-col items-end gap-1">
-                <span
-                  className="text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap text-right"
-                  style={{
-                    background: 'rgba(123, 31, 75, 0.08)',
-                    color: 'var(--sec-primary)',
-                  }}
-                >
-                  Grupo más grande: {largestGroup.students} alumnos
-                </span>
-                <span
-                  className="text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap text-right"
-                  style={{
-                    background: 'rgba(123, 31, 75, 0.06)',
-                    color: 'var(--sec-primary)',
-                  }}
-                >
-                  Batería recomendada: Enviar {largestGroup.students + 5} exámenes
-                </span>
-              </div>
-              <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
+        {/* School Info + badges (columna en móvil; fila amplia en lg) */}
+        <div className="flex-1 min-w-0 flex flex-col gap-3 lg:flex-row lg:justify-between lg:gap-6 lg:items-start">
+          <div className="min-w-0 flex-1 space-y-2 lg:max-w-[calc(100%-15rem)]">
+            <h3
+              className="font-semibold text-base leading-snug break-words"
+              style={{ color: 'var(--sec-text)' }}
+            >
+              {school.name}
+            </h3>
+            <div className="flex flex-wrap items-center gap-2">
+              <span 
+                className="font-mono text-xs px-2 py-0.5 rounded"
+                style={{ 
+                  background: 'var(--sec-surface-alt)',
+                  color: 'var(--sec-text-muted)',
+                }}
               >
-                <ChevronDown 
-                  className="w-5 h-5" 
-                  style={{ color: 'var(--sec-text-muted)' }} 
-                />
-              </motion.div>
+                {school.cct}
+              </span>
+              <span 
+                className="text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap"
+                style={{
+                  background: school.type === 'publica' 
+                    ? 'rgba(46, 125, 90, 0.12)' 
+                    : 'rgba(123, 31, 75, 0.12)',
+                  color: school.type === 'publica' 
+                    ? 'var(--sec-success, #2E7D5A)' 
+                    : 'var(--sec-primary)',
+                }}
+              >
+                {school.type === 'publica' ? 'Pública' : 'Privada'}
+              </span>
             </div>
+            <div className="flex items-start gap-1.5 min-w-0" style={{ color: 'var(--sec-text-muted)' }}>
+              <MapPin className="w-3 h-3 flex-shrink-0 mt-0.5" />
+              <span className="text-xs break-words">{school.address}</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 w-full lg:w-auto lg:max-w-[17rem] lg:flex-shrink-0 lg:items-end">
+            <span
+              className="text-xs font-semibold px-3 py-2 rounded-lg text-left lg:text-right block w-full lg:w-auto leading-snug break-words lg:break-normal lg:whitespace-nowrap"
+              style={{
+                background: 'rgba(123, 31, 75, 0.08)',
+                color: 'var(--sec-primary)',
+              }}
+            >
+              Grupo más grande: {largestGroup.students} alumnos
+            </span>
+            <span
+              className="text-xs font-semibold px-3 py-2 rounded-lg text-left lg:text-right block w-full lg:w-auto leading-snug break-words lg:break-normal lg:whitespace-nowrap"
+              style={{
+                background: 'rgba(123, 31, 75, 0.06)',
+                color: 'var(--sec-primary)',
+              }}
+            >
+              Batería recomendada: Enviar {largestGroup.students + 5} exámenes
+            </span>
           </div>
         </div>
       </button>
@@ -212,14 +210,14 @@ export default function SchoolCard({ school, index }: SchoolCardProps) {
 
               {/* School Summary */}
               <div 
-                className="mt-4 flex items-center justify-between text-xs px-4 py-3 rounded-lg"
+                className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-xs px-4 py-3 rounded-lg"
                 style={{
                   background: 'rgba(123, 31, 75, 0.04)',
                   color: 'var(--sec-text-secondary)',
                 }}
               >
-                <span>Total de alumnos en este turno: <strong style={{ color: 'var(--sec-text)' }}>{school.groups.reduce((a, g) => a + g.students, 0)}</strong></span>
-                <span>Promedio por grupo: <strong style={{ color: 'var(--sec-text)' }}>{Math.round(school.groups.reduce((a, g) => a + g.students, 0) / school.groups.length)}</strong></span>
+                <span className="break-words">Total de alumnos en este turno: <strong style={{ color: 'var(--sec-text)' }}>{school.groups.reduce((a, g) => a + g.students, 0)}</strong></span>
+                <span className="break-words sm:text-right">Promedio por grupo: <strong style={{ color: 'var(--sec-text)' }}>{Math.round(school.groups.reduce((a, g) => a + g.students, 0) / school.groups.length)}</strong></span>
               </div>
             </div>
           </motion.div>
