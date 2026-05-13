@@ -9,6 +9,7 @@ import { SkeletonHero } from '../components/SkeletonLoading';
 import SkeletonList from '../components/SkeletonLoading';
 import { schools, getSchoolStats } from '../data/schools';
 import { compareSchools } from '../lib/schoolSort';
+import { expandSchoolsByTurno } from '../lib/schoolTurnos';
 import { ArrowDownWideNarrow, ArrowUpNarrowWide } from 'lucide-react';
 
 export default function Home() {
@@ -27,10 +28,12 @@ export default function Home() {
 
   const stats = useMemo(() => getSchoolStats(), []);
 
+  const schoolsByTurno = useMemo(() => expandSchoolsByTurno(schools), []);
+
   const filteredSchools = useMemo(() => {
     const base = !searchQuery.trim()
-      ? schools
-      : schools.filter((school) => {
+      ? schoolsByTurno
+      : schoolsByTurno.filter((school) => {
           const query = searchQuery.toLowerCase().trim();
           return (
             school.name.toLowerCase().includes(query) ||
@@ -39,7 +42,7 @@ export default function Home() {
           );
         });
     return [...base].sort((a, b) => compareSchools(a, b, sortBy, sortDir));
-  }, [searchQuery, sortBy, sortDir]);
+  }, [searchQuery, sortBy, sortDir, schoolsByTurno]);
 
   if (isLoading) {
     return (
@@ -65,7 +68,8 @@ export default function Home() {
       <Header />
       
       <HeroStats 
-        stats={stats} 
+        stats={stats}
+        totalTurnos={schoolsByTurno.length}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
@@ -84,7 +88,7 @@ export default function Home() {
               <div>
                 <div className="flex items-center gap-3 mb-1">
                   <h2 className="text-xl md:text-2xl font-bold" style={{ color: 'var(--sec-text)' }}>
-                    Escuelas Registradas
+                    Turnos registrados
                   </h2>
                   <span
                     className="text-xs md:text-sm font-semibold px-3 py-1 rounded-full text-white"
@@ -94,7 +98,7 @@ export default function Home() {
                   </span>
                 </div>
                 <p className="text-xs md:text-sm" style={{ color: 'var(--sec-text-muted)' }}>
-                  Toca una escuela para ver sus grupos y alumnos
+                  Toca un turno para ver sus grupos y alumnos
                 </p>
               </div>
               {searchQuery && (

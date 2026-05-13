@@ -6,6 +6,8 @@ import type { SchoolStats } from '../types';
 
 interface HeroStatsProps {
   stats: SchoolStats;
+  /** Plantel por turno (matutino / vespertino como filas separadas). */
+  totalTurnos: number;
   searchQuery: string;
   onSearchChange: (query: string) => void;
 }
@@ -30,8 +32,8 @@ function AnimatedStat({ value, label, delay }: { value: number; label: string; d
   );
 }
 
-export default function HeroStats({ stats, searchQuery, onSearchChange }: HeroStatsProps) {
-  const { value: totalSchools } = useAnimatedCounter(stats.totalSchools, 1500);
+export default function HeroStats({ stats, totalTurnos, searchQuery, onSearchChange }: HeroStatsProps) {
+  const { value: animatedTurnos } = useAnimatedCounter(totalTurnos, 1500);
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -54,16 +56,16 @@ export default function HeroStats({ stats, searchQuery, onSearchChange }: HeroSt
             className="text-white font-extrabold text-5xl md:text-7xl block leading-none"
             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.2)' }}
           >
-            {totalSchools.toLocaleString()}
+            {animatedTurnos.toLocaleString()}
           </motion.span>
           <span className="text-white/85 text-sm md:text-base font-semibold uppercase tracking-[0.2em] mt-2 block">
-            Escuelas Inscritas
+            Total turnos
           </span>
         </motion.div>
 
         {/* Secondary Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
-          <AnimatedStat value={stats.publicSchools} label="Escuelas Públicas" delay={0.1} />
+          <AnimatedStat value={stats.totalSchools} label="Plantel físico" delay={0.1} />
           <AnimatedStat value={stats.totalGroups} label="Total Grupos" delay={0.2} />
           <AnimatedStat value={stats.totalStudents} label="Total Alumnos" delay={0.3} />
         </div>
@@ -85,7 +87,7 @@ export default function HeroStats({ stats, searchQuery, onSearchChange }: HeroSt
             onChange={(e) => onSearchChange(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder="Buscar escuela por nombre, CCT o dirección..."
+            placeholder="Buscar por nombre, clave (CCT) o ubicación..."
             className="w-full h-12 pl-12 pr-4 rounded-xl text-white placeholder-white/40 text-sm outline-none transition-all duration-200"
             style={{
               background: 'rgba(255,255,255,0.12)',

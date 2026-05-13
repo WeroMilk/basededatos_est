@@ -131,15 +131,26 @@ export default function SchoolCard({ school, index }: SchoolCardProps) {
 
             {/* Largest Group Badge + Chevron */}
             <div className="flex flex-col items-end gap-2 flex-shrink-0">
-              <span 
-                className="text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap"
-                style={{
-                  background: 'rgba(123, 31, 75, 0.08)',
-                  color: 'var(--sec-primary)',
-                }}
-              >
-                Grupo más grande: {largestGroup.students} alumnos
-              </span>
+              <div className="flex flex-col items-end gap-1">
+                <span
+                  className="text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap text-right"
+                  style={{
+                    background: 'rgba(123, 31, 75, 0.08)',
+                    color: 'var(--sec-primary)',
+                  }}
+                >
+                  Grupo más grande: {largestGroup.students} alumnos
+                </span>
+                <span
+                  className="text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap text-right"
+                  style={{
+                    background: 'rgba(123, 31, 75, 0.06)',
+                    color: 'var(--sec-primary)',
+                  }}
+                >
+                  Batería recomendada: Enviar {largestGroup.students + 5} exámenes
+                </span>
+              </div>
               <motion.div
                 animate={{ rotate: isExpanded ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
@@ -207,7 +218,7 @@ export default function SchoolCard({ school, index }: SchoolCardProps) {
                   color: 'var(--sec-text-secondary)',
                 }}
               >
-                <span>Total de alumnos en la escuela: <strong style={{ color: 'var(--sec-text)' }}>{school.groups.reduce((a, g) => a + g.students, 0)}</strong></span>
+                <span>Total de alumnos en este turno: <strong style={{ color: 'var(--sec-text)' }}>{school.groups.reduce((a, g) => a + g.students, 0)}</strong></span>
                 <span>Promedio por grupo: <strong style={{ color: 'var(--sec-text)' }}>{Math.round(school.groups.reduce((a, g) => a + g.students, 0) / school.groups.length)}</strong></span>
               </div>
             </div>

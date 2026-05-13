@@ -20,7 +20,7 @@ export default function EmptyState({ searchQuery }: EmptyStateProps) {
         <SearchX className="w-8 h-8" style={{ color: 'var(--sec-primary)' }} />
       </div>
       <h3 className="text-lg font-semibold mb-2" style={{ color: 'var(--sec-text)' }}>
-        No se encontraron escuelas
+        No se encontraron turnos
       </h3>
       <p className="text-sm text-center max-w-md" style={{ color: 'var(--sec-text-secondary)' }}>
         No hay resultados para &quot;<strong style={{ color: 'var(--sec-text)' }}>{searchQuery}</strong>&quot;. 
