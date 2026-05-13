@@ -10,6 +10,7 @@ import SkeletonList from '../components/SkeletonLoading';
 import { schools, getSchoolStats } from '../data/schools';
 import { compareSchools } from '../lib/schoolSort';
 import { expandSchoolsByTurno } from '../lib/schoolTurnos';
+import { totalExamenesBateriasRecomendadas } from '../lib/examTotals';
 import { ArrowDownWideNarrow, ArrowUpNarrowWide } from 'lucide-react';
 
 export default function Home() {
@@ -29,6 +30,11 @@ export default function Home() {
   const stats = useMemo(() => getSchoolStats(), []);
 
   const schoolsByTurno = useMemo(() => expandSchoolsByTurno(schools), []);
+
+  const totalBateriasExamenes = useMemo(
+    () => totalExamenesBateriasRecomendadas(schoolsByTurno),
+    [schoolsByTurno]
+  );
 
   const filteredSchools = useMemo(() => {
     const base = !searchQuery.trim()
@@ -70,6 +76,7 @@ export default function Home() {
       <HeroStats 
         stats={stats}
         totalTurnos={schoolsByTurno.length}
+        totalBateriasExamenes={totalBateriasExamenes}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />

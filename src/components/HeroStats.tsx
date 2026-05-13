@@ -8,6 +8,8 @@ interface HeroStatsProps {
   stats: SchoolStats;
   /** Plantel por turno (matutino / vespertino como filas separadas). */
   totalTurnos: number;
+  /** Suma de (mayor grupo + 5) por cada turno — total exámenes a imprimir. */
+  totalBateriasExamenes: number;
   searchQuery: string;
   onSearchChange: (query: string) => void;
 }
@@ -32,7 +34,13 @@ function AnimatedStat({ value, label, delay }: { value: number; label: string; d
   );
 }
 
-export default function HeroStats({ stats, totalTurnos, searchQuery, onSearchChange }: HeroStatsProps) {
+export default function HeroStats({
+  stats,
+  totalTurnos,
+  totalBateriasExamenes,
+  searchQuery,
+  onSearchChange,
+}: HeroStatsProps) {
   const { value: animatedTurnos } = useAnimatedCounter(totalTurnos, 1500);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -52,6 +60,12 @@ export default function HeroStats({ stats, totalTurnos, searchQuery, onSearchCha
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 15 }}
         >
+          <p
+            className="text-white/95 text-sm md:text-base font-semibold tracking-wide mb-4 md:mb-5 px-2 leading-snug break-words max-w-2xl mx-auto"
+            style={{ textShadow: '0 1px 12px rgba(0,0,0,0.15)' }}
+          >
+            Recuperando Aprendizajes Fundamentales
+          </p>
           <motion.span 
             className="text-white font-extrabold text-5xl md:text-7xl block leading-none"
             style={{ textShadow: '0 2px 20px rgba(0,0,0,0.2)' }}
@@ -64,11 +78,15 @@ export default function HeroStats({ stats, totalTurnos, searchQuery, onSearchCha
         </motion.div>
 
         {/* Secondary Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-4">
           <AnimatedStat value={stats.totalSchools} label="Plantel físico" delay={0.1} />
-          <AnimatedStat value={stats.totalGroups} label="Total Grupos" delay={0.2} />
-          <AnimatedStat value={stats.totalStudents} label="Total Alumnos" delay={0.3} />
+          <AnimatedStat value={stats.totalGroups} label="Total grupos" delay={0.15} />
+          <AnimatedStat value={stats.totalStudents} label="Total alumnos" delay={0.2} />
+          <AnimatedStat value={totalBateriasExamenes} label="Total exámenes" delay={0.25} />
         </div>
+        <p className="text-center text-white/65 text-[11px] md:text-xs px-4 mb-8 max-w-xl mx-auto leading-relaxed">
+          Suma de las baterías recomendadas: por cada turno, grupo más grande + 5 exámenes a imprimir.
+        </p>
 
         {/* Search Bar */}
         <motion.div 
