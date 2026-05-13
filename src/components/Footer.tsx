@@ -19,7 +19,7 @@ export default function Footer() {
         <img
           src={`${import.meta.env.BASE_URL}logo-sonora.png`}
           alt="Sonora, Tierra de oportunidades"
-          className="w-full max-w-xl h-auto object-contain mb-4 mx-auto"
+          className="w-auto max-w-[200px] sm:max-w-[240px] h-auto max-h-14 object-contain mb-3 mx-auto"
           decoding="async"
         />
         <h3 className="text-white font-semibold text-lg mb-1">
