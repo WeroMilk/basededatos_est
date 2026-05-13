@@ -18,7 +18,7 @@ export default function Footer() {
       >
         <img
           src={`${import.meta.env.BASE_URL}logo-sonora.png`}
-          alt="Sonora, Tierra de oportunidades"
+          alt="Sonora — DGEST EST — Tierra de oportunidades"
           className="w-auto max-w-[260px] sm:max-w-[300px] h-auto max-h-16 sm:max-h-[4.75rem] object-contain mb-3 mx-auto"
           decoding="async"
         />
