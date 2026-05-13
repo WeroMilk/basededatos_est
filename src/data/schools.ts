@@ -1811,6 +1811,31 @@ export const schools: School[] = [
       }
     ],
     type: 'publica' as const
+  },
+  {
+    id: "est-z18-58",
+    name: "Escuela Secundaria Técnica #58 (Zona 18)",
+    cct: "Z18EST58",
+    address: "Zona 18, Sonora, México",
+    groups: [
+      {
+        id: "g192",
+        code: "1A M",
+        grade: "1",
+        section: "A",
+        shift: 'M',
+        students: 31
+      },
+      {
+        id: "g193",
+        code: "1B M",
+        grade: "1",
+        section: "B",
+        shift: 'M',
+        students: 28
+      }
+    ],
+    type: 'publica' as const
   }
 ];
 
