@@ -11,7 +11,7 @@ export default function Header() {
     >
       <div className="flex items-center gap-3 md:gap-4 w-full max-w-6xl mx-auto">
         <img
-          src={`${import.meta.env.BASE_URL}logo-dgest-est.png`}
+          src={`${import.meta.env.BASE_URL}logo-dgest-white.png`}
           alt="DGEST — Escuela Secundaria Técnica"
           className="h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14 shrink-0 object-contain object-left"
           decoding="async"
