@@ -9,7 +9,6 @@ import { fileURLToPath } from 'url';
 const ROOT = 'C:\\Users\\alfon\\Documents\\Rosa Isela\\Listas Alumnos';
 
 const CSV_FILES = [
-  path.join(ROOT, 'alfonsosilvas', 'Escuela Secundaria Técnica #23 Zona 17.csv'),
   path.join(ROOT, 'alfonsosilvas', 'Escuela Secundaria Técnica #26 Zona 17.csv'),
   path.join(ROOT, 'alfonsosilvas', 'Escuela Secundaria Técnica #27 Zona 12.csv'),
   path.join(ROOT, 'alfonsosilvas', 'Escuela Secundaria Técnica #28 Zona 17 cde .csv'),

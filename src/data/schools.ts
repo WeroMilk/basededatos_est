@@ -1560,47 +1560,6 @@ export const schools: School[] = [
     type: 'publica' as const
   },
   {
-    id: "est-z17-23",
-    name: "Escuela Secundaria Técnica #23 (Zona 17)",
-    cct: "Z17EST23",
-    address: "Zona 17, Sonora, México",
-    groups: [
-      {
-        id: "g166",
-        code: "1A M",
-        grade: "1",
-        section: "A",
-        shift: 'M',
-        students: 33
-      },
-      {
-        id: "g167",
-        code: "1B M",
-        grade: "1",
-        section: "B",
-        shift: 'M',
-        students: 31
-      },
-      {
-        id: "g168",
-        code: "1C M",
-        grade: "1",
-        section: "C",
-        shift: 'M',
-        students: 32
-      },
-      {
-        id: "g169",
-        code: "1D M",
-        grade: "1",
-        section: "D",
-        shift: 'M',
-        students: 32
-      }
-    ],
-    type: 'publica' as const
-  },
-  {
     id: "est-z17-26",
     name: "Escuela Secundaria Técnica #26 (Zona 17)",
     cct: "Z17EST26",
