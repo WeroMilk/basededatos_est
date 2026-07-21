@@ -1,0 +1,36 @@
+{
+  "name": "Sistema de Registro Escolar - SEC Sonora",
+  "short_name": "SEC Sonora",
+  "description": "Listado de grupos y alumnos de Escuelas Secundarias Técnicas",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#7B1F4B",
+  "theme_color": "#7B1F4B",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
